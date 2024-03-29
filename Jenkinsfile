@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     def app // Define app variable here
-                    app = docker.build("mjovanovik/kiii-jenkins")
+                    app = docker.build("cokovskak/KIII-jenkins")
                 }
             }
         }
@@ -20,7 +20,7 @@ pipeline {
                 script {
                     def app // Define app variable here as well
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                        app = docker.image("mjovanovik/kiii-jenkins") // Retrieve the image
+                        app = docker.image("cokovskak/KIII-jenkins") // Retrieve the image
                         app.push("${env.BRANCH_NAME}-${env.BUILD_NUMBER}")
                         app.push("${env.BRANCH_NAME}-latest")
                         // signal the orchestrator that there is a new version
